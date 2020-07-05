@@ -1,29 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import UserItems from "../User/UserItems";
 import { Grid, Container, makeStyles } from "@material-ui/core";
 import Boundries from "../../Boundries";
 import Loader from "../Layouts/Loader";
+import GithubContext from "../../Context/githubContext";
 
 const Users = (props) => {
+  const githubContext = useContext(GithubContext);
+  const { loading, users } = githubContext;
+
   const classes = useStyles();
   return (
     <Boundries>
       <Container className={classes.cardContent} maxWidth="md">
-        {props.Loading ? (
+        {loading ? (
           <Loader />
         ) : (
           <Grid container spacing={4}>
-            {props.users.map((user) => (
-              <UserItems key={user.id} user={user} />
-            ))}
-          </Grid>
-        )}
-
-        {props.users.length === 0 ? (
-          <h1 style={{ textAlign: "center" }}>User Not Found</h1>
-        ) : (
-          <Grid container spacing={4}>
-            {props.users.map((user) => (
+            {users.map((user) => (
               <UserItems key={user.id} user={user} />
             ))}
           </Grid>

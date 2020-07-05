@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Container, makeStyles, Fab } from "@material-ui/core";
 import FeaturedPost from "./UserDetails";
 import { Link } from "react-router-dom";
 import Loader from "../Layouts/Loader";
+import GithubContext from "../../Context/githubContext";
 
-export const User = ({ user, getUser, match, loading }) => {
+const User = ({ match }) => {
+  const githubContext = useContext(GithubContext);
+  const { user, getUser, loading } = githubContext;
   useEffect(() => {
     getUser(match.params.login);
-
     // eslint-disable-next-line
   }, []);
 

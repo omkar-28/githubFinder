@@ -9,6 +9,7 @@ export const fetchedUser = async (user) => {
   }
   try {
     const { data } = await axios.get(urlApi);
+    console.log(data);
     return data.items ? data.items : data;
   } catch (error) {
     console.log(error);
@@ -16,12 +17,12 @@ export const fetchedUser = async (user) => {
 };
 
 export const fetchUserDetails = async (login) => {
-  console.log(login);
-
   try {
     const urlApi = `https://api.github.com/users/${login}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`;
 
     const { data } = await axios.get(urlApi);
+    console.log(data);
+
     return data;
   } catch (error) {
     console.error(error);

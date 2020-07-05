@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { InputBase, makeStyles, Container, Button } from "@material-ui/core";
+import GithubContext from "../../Context/githubContext";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -22,12 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchBar = ({ inputHandler, clear, clearSearch }) => {
+const SearchBar = () => {
+  const githubContext = useContext(GithubContext);
+  const { Clear, clearSearch } = githubContext;
   const [text, setText] = useState("");
 
   const onSubmitUser = (e) => {
     e.preventDefault();
-    inputHandler(text);
+    githubContext.inputHandler(text);
     setText("");
   };
 
@@ -47,7 +50,7 @@ const SearchBar = ({ inputHandler, clear, clearSearch }) => {
             onChange={(e) => setText(e.target.value)}
           />
         </form>
-        {clear ? (
+        {Clear ? (
           <Button variant="contained" color="secondary" onClick={clearSearch}>
             Clear
           </Button>
