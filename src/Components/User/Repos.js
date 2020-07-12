@@ -9,6 +9,7 @@ const Repos = ({ topRepos }) => {
     if (topRepos.length) {
       getRepo("star");
     }
+    // eslint-disable-next-line
   }, []);
 
   const getRepo = (type) => {
@@ -27,7 +28,6 @@ const Repos = ({ topRepos }) => {
     setTopRepos(sorted);
   };
 
-  console.log(topRepo);
   const classes = useStyles();
 
   return (
@@ -37,34 +37,36 @@ const Repos = ({ topRepos }) => {
           <Fragment>
             {topRepo.map((repo) => (
               <Grid item xs={12} sm={6} md={6} key={repo.id}>
-                <Card className={classes.root}>
-                  <CardContent>
-                    <Typography variant="h5" component="h2">
-                      {repo.name}
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                      {repo.description}
-                    </Typography>
-                  </CardContent>
-                  <CardContent className={classes.repoDetails}>
-                    <div>
-                      <i className="fa fa-star-o" aria-hidden="true">
-                        {" "}
-                        {repo.stargazers_count}
-                      </i>
-                      <i className="fa fa-code-fork" aria-hidden="true">
-                        {" "}
-                        {repo.forks_count}
-                      </i>
-                    </div>
-                    <div>
-                      <i className="fa fa-code" aria-hidden="true">
-                        {" "}
-                        {repo.language}
-                      </i>
-                    </div>
-                  </CardContent>
-                </Card>
+                <a href={repo.url} target="blank" className={classes.links}>
+                  <Card className={classes.root}>
+                    <CardContent>
+                      <Typography variant="h5" component="h2">
+                        {repo.name}
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        {repo.description}
+                      </Typography>
+                    </CardContent>
+                    <CardContent className={classes.repoDetails}>
+                      <div>
+                        <i className="fa fa-star-o" aria-hidden="true">
+                          {" "}
+                          {repo.stargazers_count}
+                        </i>
+                        <i className="fa fa-code-fork" aria-hidden="true">
+                          {" "}
+                          {repo.forks_count}
+                        </i>
+                      </div>
+                      <div>
+                        <i className="fa fa-code" aria-hidden="true">
+                          {" "}
+                          {repo.language}
+                        </i>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
               </Grid>
             ))}
           </Fragment>
@@ -89,6 +91,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "16px",
       marginRight: "15px",
     },
+  },
+  links: {
+    color: "inherit",
+    textDecoration: "none",
   },
   media: {
     height: 140,
