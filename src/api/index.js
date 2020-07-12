@@ -5,8 +5,8 @@ if (process.env.NODE_ENV !== "production") {
   clientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
   clientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 } else {
-  clientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
-  clientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
+  clientId = process.env.GITHUB_CLIENT_ID;
+  clientSecret = process.env.GITHUB_CLIENT_SECRET;
 }
 
 const url = `https://api.github.com/users?client_id=${clientId}&client_secret=${clientSecret}`;
