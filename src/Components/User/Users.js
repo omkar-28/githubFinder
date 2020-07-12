@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import UserItems from "../User/UserItems";
 import { Grid, Container, makeStyles } from "@material-ui/core";
 import Boundries from "../../Boundries";
@@ -7,7 +7,12 @@ import GithubContext from "../../Context/githubContext";
 
 const Users = (props) => {
   const githubContext = useContext(GithubContext);
-  const { loading, users } = githubContext;
+  const { loading, users, getUserList } = githubContext;
+
+  useEffect(() => {
+    getUserList();
+    // eslint-disable-next-line
+  }, []);
 
   const classes = useStyles();
   return (

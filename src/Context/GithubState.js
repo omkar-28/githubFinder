@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import { fetchedUser, fetchUserDetails } from "../api";
 import GithubContext from "./githubContext";
 import GithubReducer from "./GithubReducer";
+import Boundries from "../Boundries";
 import {
   SEARCH_USERS,
   GET_USER,
@@ -82,7 +83,7 @@ const GithubState = (props) => {
         setText,
       }}
     >
-      {props.children}
+      <Boundries>{props.children}</Boundries>
     </GithubContext.Provider>
   );
 };

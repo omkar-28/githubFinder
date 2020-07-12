@@ -1,17 +1,27 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Container, makeStyles, Fab } from "@material-ui/core";
 import FeaturedPost from "./UserDetails";
 import { Link } from "react-router-dom";
 import Loader from "../Layouts/Loader";
 import GithubContext from "../../Context/githubContext";
+import Repos from "./Repos";
+import { fetchRepos } from "../../api";
 
 const User = ({ match }) => {
   const githubContext = useContext(GithubContext);
   const { user, getUser, loading } = githubContext;
+  const [topRepos, setTopRepos] = useState([]);
+
   useEffect(() => {
     getUser(match.params.login);
+    getRepos(match.params.login);
     // eslint-disable-next-line
   }, []);
+
+  const getRepos = async (userLogin) => {
+    const fetchedRepos = await fetchRepos(userLogin);
+    setTopRepos(fetchedRepos);
+  };
 
   const classes = useStyles();
 
@@ -47,20 +57,25 @@ const User = ({ match }) => {
       {loading ? (
         <Loader />
       ) : (
-        <FeaturedPost
-          name={name}
-          hireable={hireable}
-          bio={bio}
-          avatar_url={avatar_url}
-          login={login}
-          company={company}
-          blog={blog}
-          followers={followers}
-          following={following}
-          public_repos={public_repos}
-          public_gists={public_gists}
-          html_url={html_url}
-        />
+        <React.Fragment>
+          <FeaturedPost
+            name={name}
+            hireable={hireable}
+            bio={bio}
+            avatar_url={avatar_url}
+            login={login}
+            company={company}
+            blog={blog}
+            followers={followers}
+            following={following}
+            public_repos={public_repos}
+            public_gists={public_gists}
+            html_url={html_url}
+          />
+
+          <h2 className={classes.topRepo}>Top Repos</h2>
+          {topRepos.length > 0 && <Repos topRepos={topRepos} />}
+        </React.Fragment>
       )}
     </Container>
   );
@@ -73,6 +88,10 @@ const useStyles = makeStyles((theme) => ({
   },
   backButton: {
     marginBottom: theme.spacing(3),
+  },
+  topRepo: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
 }));
 
