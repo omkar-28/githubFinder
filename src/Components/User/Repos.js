@@ -27,7 +27,7 @@ const Repos = ({ topRepos }) => {
       .slice(0, Limit);
     setTopRepos(sorted);
   };
-
+  console.log(topRepo);
   const classes = useStyles();
 
   return (
@@ -37,7 +37,11 @@ const Repos = ({ topRepos }) => {
           <Fragment>
             {topRepo.map((repo) => (
               <Grid item xs={12} sm={6} md={6} key={repo.id}>
-                <a href={repo.url} target="blank" className={classes.links}>
+                <a
+                  href={repo.html_url}
+                  target="blank"
+                  className={classes.links}
+                >
                   <Card className={classes.root}>
                     <CardContent>
                       <Typography variant="h5" component="h2">
