@@ -18,7 +18,7 @@ const App = () => {
         <Router>
           <Navbars title="Github Finder" icon="fa fa-github" />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/githubFinder" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/user/:login" component={User} />

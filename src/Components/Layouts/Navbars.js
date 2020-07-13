@@ -44,7 +44,7 @@ const Navbars = ({ icon, title }) => {
         <Toolbar>
           <i className={icon}></i>
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link to="/" className={classes.pageLogo}>
+            <Link to="/githubFinder" className={classes.pageLogo}>
               {title}
             </Link>
           </Typography>
