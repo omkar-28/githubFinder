@@ -9,19 +9,19 @@ export const About = () => {
       <br />
       <p>
         Github User Finder, this app is built for learning react js, by
-        following the tutorials and understanding the basics funcdamentals of
-        the React Js and Material UI
+        following the tutorials and understanding the basics fundamentals of the
+        React Js and Material UI
       </p>
       <br />
       <h3>Version 0.1</h3>
       <p>
-        This Project was build using the React class based componensts using the
-        lifecycle Methods for calling the Api adn displaying the Users List.
-        This was later refactored into React function based componensts.{" "}
+        This Project was built using the React class based components using the
+        lifecycle Methods for calling the Api and displaying the Users List.
+        This was later refactored into React function based components.{" "}
       </p>
       <br />
       <h3>Version 0.2</h3>
-      <p>Added The Top Repos components wheer the top 9 repos are displayed</p>
+      <p>Added The Top Repos components where the top 9 repos are displayed</p>
     </Container>
   );
 };
