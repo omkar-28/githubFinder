@@ -44,7 +44,7 @@ const User = ({ match }) => {
     <Container className={classes.cardContent} maxWidth="md">
       <Fab variant="extended" className={classes.backButton}>
         <Link
-          to="/"
+          to="/githubFinder"
           style={{
             color: "#333",
             textTransform: "uppercase",
